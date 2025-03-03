@@ -1,0 +1,23 @@
+<%= turbo_frame_tag :tavern_table, class: 'grid grid-cols-3 col-span-9 max-h-screen' do %>
+  <div class="flex flex-col col-span-2 bg-primary-700 max-h-screen">
+    <%= turbo_stream_from tavern_table, :tavern_table_messages %>
+    <div class="sticky top-0 p-4 bg-primary-800 border-x border-x-primary-900/50 border-b border-b-primary-900">
+      <h2 class="text-2xl text-primary-50"># <%= tavern_table.name %></h1>
+    </div>
+    <%= turbo_frame_tag :tavern_table_messages, class: 'flex flex-col-reverse h-full overflow-scroll scrollbar-hidden' do %>
+      <% tavern_table.tavern_table_messages.order(id: :desc).each do |tavern_table_message| %>
+        <%= render partial: 'tavern_table_messages/message', locals: { tavern_table_message: } %>
+      <% end %>
+    <% end %>
+    <div class="sticky bottom-0 p-2 bg-primary-700">
+      <%= form_with url: tavern_table_messages_path(tavern, tavern_table), scope: :tavern_table_message do |form| %>
+        <%= form.text_field :content, placeholder: "Chat in ##{tavern_table.name}", class: 'text-primary-50 placeholder:text-primary-500 p-5 rounded-lg bg-primary-900 w-full' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2 p-2 bg-primary-800 h-full overflow-scroll scrollbar-hidden">
+    <% tavern.tavern_accounts.each do |tavern_account| %>
+      <%= render partial: 'accounts/card_small', locals: { account: tavern_account.account } %>
+    <% end %>
+  </div>
+<% end %>

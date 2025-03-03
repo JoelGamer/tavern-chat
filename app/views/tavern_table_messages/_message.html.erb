@@ -1,0 +1,13 @@
+<div class="flex gap-2 p-2">
+  <% if tavern_table_message.account.avatar.attached? %>
+    <%= image_tag tavern_table_message.account.avatar.variant(resize_to_fill: [48, 48]), class: 'bg-gray-900 rounded-4xl h-12 w-12' %>
+  <% else %>
+    <div class="flex justify-center items-center bg-gray-900 rounded-4xl h-12 w-12">
+      <span class="text-white"><%= tavern_table_message.account.display_name_abbreviation %></span>
+    </div>
+  <% end %>
+  <div class="flex flex-col justify-center">
+    <span class="text-primary-50"><%= tavern_table_message.account.display_name %> <span class="text-xs"><%= tavern_table_message.created_at.strftime('%I:%M %p %m/%d/%y') %></span></span>
+    <span class="text-primary-50"><%= tavern_table_message.content %></span>
+  </div>
+</div>

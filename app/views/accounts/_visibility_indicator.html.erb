@@ -1,0 +1,15 @@
+<% if account.available? %>
+  <%= render partial: 'accounts/available_indicator', locals: { account_id: account.id } %>
+<% end %>
+
+<% if account.away? %>
+  <%= render partial: 'accounts/away_indicator', locals: { account_id: account.id } %>
+<% end %>
+
+<% if account.busy? %>
+  <%= render partial: 'accounts/busy_indicator', locals: { account_id: account.id } %>
+<% end %>
+
+<% if account.offline? %>
+  <%= render partial: 'accounts/offline_indicator', locals: { account_id: account.id } %>
+<% end %>

@@ -1,1 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-primary: "Gabarito", sans-serif;
+
+  /* --color-primary-900: #471514;
+  --color-primary-800: #58221d;
+  --color-primary-700: #672f24;
+  --color-primary-600: #773a2d;
+  --color-primary-500: #834333;
+  --color-primary-400: #9a5d4e;
+  --color-primary-300: #b17969;
+  --color-primary-200: #d19c8f;
+  --color-primary-100: #efc1b3;
+  --color-primary-50: #ffe3d2; */
+  --color-primary-900: #17171c;
+  --color-primary-800: #37373c;
+  --color-primary-700: #55555b;
+  --color-primary-600: #68686f;
+  --color-primary-500: #909097;
+  --color-primary-400: #b1b0b7;
+  --color-primary-300: #d5d5dc;
+  --color-primary-200: #e6e5ed;
+  --color-primary-100: #f0f0f7;
+  --color-primary-50: #f8f8ff;
+}
+
+@utility scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}

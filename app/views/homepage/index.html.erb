@@ -1,0 +1,28 @@
+<%= render partial: 'application/navbar', locals: { taverns: @taverns } %>
+
+<div class="grid grid-cols-12 h-full w-full">
+  <div class="col-span-9 bg-primary-800">
+    <div class="p-2 border-b border-primary-900/50">
+      <%= render partial: 'accounts/card_small', locals: { account: @current_user } %>
+    </div>
+    <div>
+      <div class="flex gap-2 dark:text-primary-50">
+        <span>Friends</span>
+        <span>Inventory</span>
+      </div>
+
+      <div class="flex">
+        <% @current_user.friends.each do |friend| %>
+          <%= render partial: 'accounts/card_small', locals: { account: friend } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-span-3 flex flex-col gap-2 p-2 bg-primary-800 border-l border-primary-900/50">
+    <h2 class="text-3xl dark:text-primary-50">Active Now</h2>
+    <% @current_user.friends.each do |friend| %>
+      <%= render partial: 'accounts/card_small', locals: { account: friend } %>
+    <% end %>
+  </div>
+</div>

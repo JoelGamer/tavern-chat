@@ -1,0 +1,22 @@
+<%= render partial: 'application/navbar', locals: { taverns: @taverns } %>
+
+<div class="grid grid-cols-12 h-full w-full">
+  <div class="flex flex-col justify-between gap-2 col-span-3 bg-primary-800 overflow-scroll scrollbar-hidden h-full">
+    <div class="sticky top-0 p-4 bg-primary-800 border-b border-primary-900/50">
+      <h1 class="text-2xl text-primary-50"><%= @tavern.name %></h1>
+    </div>
+    <div class="flex flex-col gap-2 h-full">
+      <% @tavern.tavern_tables.each do |tavern_table| %>
+        <div class="flex">
+          <%= link_to "# #{tavern_table.name}", tavern_table_path(@tavern, tavern_table), class: 'px-4 text-primary-50 w-full', data: { turbo_stream: true } %>
+        </div>
+      <% end %>
+    </div>
+    <div class="p-2 bg-primary-800 border-t border-primary-900/50">
+      <%= render partial: 'accounts/card_small', locals: { account: @current_user } %>
+    </div>
+  </div>
+  <%= render partial: 'tavern_tables/content', locals: { tavern: @tavern, tavern_table: @tavern.tavern_tables.first } %>
+</div>
+
+<%#<%= link_to 'Logout', session_path(@current_user), data: { turbo_method: :delete } %>

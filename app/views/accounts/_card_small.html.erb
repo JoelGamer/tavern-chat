@@ -1,0 +1,26 @@
+<div class="flex gap-2 p-2 rounded-xl bg-primary-900">
+  <div class="relative flex justify-center items-center bg-primary-800 rounded-4xl h-12 w-12">
+    <%= turbo_stream_from account, :visibility %>
+
+    <% if account.avatar.attached? %>
+      <%= image_tag account.avatar.variant(:thumb), class: 'bg-primary-900 rounded-4xl h-12 w-12' %>
+      <div class="absolute bottom-0 right-0 rounded-4xl p-1 bg-primary-900">
+        <%= render partial: 'accounts/visibility_indicator', locals: { account: } %>
+      </div>
+    <% else %>
+      <span class="text-white"><%= account.display_name_abbreviation %></span>
+      <div class="absolute bottom-0 right-0 rounded-4xl p-1 bg-primary-900">
+        <%= render partial: 'accounts/visibility_indicator', locals: { account: } %>
+      </div>
+    <% end %>
+  </div>
+  <div class="flex flex-col justify-center">
+    <span class="text-white">
+      <%= account.display_name %>
+      <% if account.class.name == 'ApplicationAccount' %>
+        <span class="p-1 rounded-md bg-blue-900 text-xs">BOT</span>
+      <% end %>
+    </span>
+    <%= render partial: 'accounts/visibility_text', locals: { account: } %>
+  </div>
+</div>

@@ -8,4 +8,14 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+
+  root 'index', controller: :homepage
+
+  resources :taverns, only: %i[show] do
+    resources :tables, only: %i[show], controller: :tavern_tables do
+      resources :messages, only: %i[create], controller: :tavern_table_messages
+    end
+  end
+
+  resources :sessions, only: %i[new create destroy]
 end
